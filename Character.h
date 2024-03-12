@@ -20,11 +20,11 @@ private:
     const float speed{4.f};
     float width{};
     float height{};
+    float scale{4.0f};
 
 public:
-    Character();
+    Character(int winWidth, int winHEight);
     Vector2 getWorldPos() { return worldPos; }
-    void setScreenPos(int winWidth, int winHeigth);
     void tick(float deltaTime);
     void undoMovement();
 };
