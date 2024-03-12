@@ -8,13 +8,14 @@ private:
     Texture2D run{LoadTexture("characters/knight_run_spritesheet.png")};
     Vector2 screenPos{};
     Vector2 worldPos{};
+    Vector2 worldPosLastFrame{};
     // 1 : facing right, -1: facing left
     float rightLeft{1.f};
 
     // animation ini
     float runningTime{};
     int frame{};
-    const int maxFrame{6};
+    const int maxFrames{6};
     const float updateTime{1.f / 12.f};
     const float speed{4.f};
     float width{};
@@ -25,4 +26,5 @@ public:
     Vector2 getWorldPos() { return worldPos; }
     void setScreenPos(int winWidth, int winHeigth);
     void tick(float deltaTime);
+    void undoMovement();
 };

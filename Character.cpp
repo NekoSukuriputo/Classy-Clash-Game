@@ -3,19 +3,20 @@
 
 Character::Character()
 {
-    width = texture.width / frame;
+    width = texture.width / maxFrames;
     height = texture.height;
 }
 
 void Character::setScreenPos(int winWidth, int winHeigth)
 {
     screenPos = {
-        (float)winWidth / 2.0f - 4.0f * (0.5f * width / 6.0f),
+        (float)winWidth / 2.0f - 4.0f * (0.5f * width),
         (float)winHeigth / 2.0f - 4.0f * (0.5f * height)};
 }
 
 void Character::tick(float deltaTime)
 {
+    worldPosLastFrame = worldPos;
     // map direction
     Vector2 direction{};
     if (IsKeyDown(KEY_A))
@@ -44,11 +45,16 @@ void Character::tick(float deltaTime)
     {
         frame++;
         runningTime = 0.f;
-        if (frame > maxFrame)
+        if (frame > maxFrames)
             frame = 0;
     }
     // draw charater
-    Rectangle source{frame * width / 6.f, 0.f, rightLeft * width, height};
+    Rectangle source{frame * width, 0.f, rightLeft * width, height};
     Rectangle dest{screenPos.x, screenPos.y, 4.0f * width, 4.0f * height};
     DrawTexturePro(texture, source, dest, Vector2{}, 0.f, WHITE);
+}
+
+void Character::undoMovement()
+{
+    worldPos = worldPosLastFrame;
 }
