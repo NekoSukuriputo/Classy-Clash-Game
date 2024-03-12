@@ -10,6 +10,7 @@ private:
 public:
     Character(int winWidth, int winHEight);
     virtual void tick(float deltaTime) override;
+    Vector2 getScreenPos() { return screenPos; };
 };
 
 #endif
