@@ -1,6 +1,7 @@
+#pragma once
 
-#ifndef BASE_CHARACTER_H
-#define BASE_CHARACTER_H
+// #ifndef BASE_CHARACTER_H
+// #define BASE_CHARACTER_H
 
 #include "raylib.h"
 class BaseCharacter
@@ -40,4 +41,4 @@ private:
     bool alive{true};
 };
 
-#endif
+// #endif
